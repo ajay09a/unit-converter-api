@@ -3,8 +3,11 @@ const app = express();
 const converterRoutes = require("./routes/converterRoutes");
 const errorHandler = require("./errors/errorHandler");
 const config = require("./config/config");
+const logger = require("./middleware/logger");
 
 app.use(express.static("public"));
+
+app.use(logger);
 
 app.get("/", (req, res) => {
     res.json({
