@@ -1,21 +1,23 @@
 const convertLength = require("../utils/lengthConversion");
 
-exports.convertLength = (req, res)=>{
+exports.convertLength = (req, res, next)=>{
     const value = Number(req.query.value);
     const from = req.query.from;
     const to = req.query.to;
 
     if(!value || !from || !to){
-        return res.status(400).json({
-            error: "required all field"
+        return next({
+            status: 400,
+            message: "required all fields"
         });
     }
     
     const result = convertLength(value, from, to);
 
     if(result == null){
-        return res.status(400).json({
-            error: "conversion not valid"
+        return next({
+            status: 400,
+            message: "Invalid conversion"
         });
     }
 
