@@ -1,9 +1,8 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
-const converterRoutes = require("./src/routes/converterRoutes");
-const errorHandler = require("./src/errors/errorHandler");
-const config = require("./src/config/config");
+const converterRoutes = require("./routes/converterRoutes");
+const errorHandler = require("./errors/errorHandler");
+const config = require("./config/config");
 
 app.use(express.static("public"));
 
@@ -28,6 +27,4 @@ app.use((req, res, next)=>{
 // handle error
 app.use(errorHandler);
 
-app.listen(config.port, ()=>{
-    console.log(`Server is running on Port: ${config.port}`);
-})
+module.exports = app;
