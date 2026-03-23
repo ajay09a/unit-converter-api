@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const lengthController = require("../controllers/converterController");
+const lengthController = require("../controllers/lengthConverterController");
 const weightController = require("../controllers/weightConverterController")
 
 router.get("/convert/length", lengthController.convertLength);
