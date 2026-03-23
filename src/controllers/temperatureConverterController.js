@@ -1,6 +1,6 @@
-const convertTemperture = require("../utils/tempertureConversion");
+const convertTemperature = require("../utils/temperatureConversion");
 
-exports.convertTemperture = (req, res, next)=>{
+exports.convertTemperature = (req, res, next)=>{
     const value = Number(req.query.value);
     const from = req.query.from;
     const to = req.query.to;
@@ -12,7 +12,7 @@ exports.convertTemperture = (req, res, next)=>{
         });
     }
 
-    const result = convertTemperture(value, from , to);
+    const result = convertTemperature(value, from , to);
 
     if(result == null){
         return next({
