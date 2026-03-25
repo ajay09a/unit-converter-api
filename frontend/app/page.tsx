@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import './global.css';
 
 export default function Page() {
   const [data, setData] = useState<any>(null);
@@ -34,35 +35,38 @@ export default function Page() {
   };
 
   return (
-    <div>
-        <h1>Unit Converter</h1>
-        <div>
+    <div className="container">
+        <h1 className="title">Unit Converter</h1>
+        <div className="tabs">
             <button onClick={()=>setConversionType("length")}>Length</button>
             <button onClick={()=>setConversionType("weight")}>weight</button>
             <button onClick={()=>setConversionType("temperature")}>Temperature</button>
         </div>
-        <label>
-            value:
-            <input type="number" value={value} onChange={e => setValue(Number(e.target.value))} />
-        </label>
-        <label>
-          From: 
-          <select value={fromUnit} onChange={e => setFromUnit(e.target.value)}>
-            <option value="">Select</option>
-            {units[conversiontype].map(u => <option key={u} value={u}>{u}</option>)}
-          </select>
-        </label>
-        <label>
-          To: 
-          <select value={toUnit} onChange={e => setToUnit(e.target.value)}>
-            <option value="">Select</option>
-            {units[conversiontype].map(u => <option key={u} value={u}>{u}</option>)}
-          </select>
-        </label>
+        <div className="form">
+            <label>
+                Enter the {conversiontype} to convert:
+                <input type="number" value={value} onChange={e => setValue(Number(e.target.value))} />
+            </label>
+            <label>
+            Unit to convert from: 
+            <select value={fromUnit} onChange={e => setFromUnit(e.target.value)}>
+                <option value="">Select</option>
+                {units[conversiontype].map(u => <option key={u} value={u}>{u}</option>)}
+            </select>
+            </label>
+            <label>
+            Unit to convert to: 
+            <select value={toUnit} onChange={e => setToUnit(e.target.value)}>
+                <option value="">Select</option>
+                {units[conversiontype].map(u => <option key={u} value={u}>{u}</option>)}
+            </select>
+            </label>
+            
 
-      <button onClick={fetchData}>Convert</button>
+            <button className="convertBtn" onClick={fetchData} disabled={!value || !fromUnit || !toUnit}>Convert</button>
+        </div>
 
-      {data && <h2>Result: {data.result}</h2>}
+      {data && <h2 className="result">Result: {data.result.toFixed(2)}</h2>}
     </div>
   );
 }
