@@ -5,6 +5,12 @@ const errorHandler = require("./errors/errorHandler");
 const config = require("./config/config");
 const logger = require("./middleware/logger");
 
+const cors = require("cors");
+
+app.use(cors({
+    origin: "http://localhost:3000"
+}));
+
 app.use(express.static("public"));
 
 app.use(logger);

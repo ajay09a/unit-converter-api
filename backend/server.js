@@ -4,4 +4,6 @@ const app = require("./src/app");
 
 app.listen(config.port, ()=>{
     console.log(`Server is running on Port: ${config.port}`);
+}).on("error", (err) => {
+    console.error("Server failed to start:", err);
 })
